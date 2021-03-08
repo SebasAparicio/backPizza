@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.ingredient;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,8 +1,8 @@
-package com.example.demo.domain;
+package com.example.demo.domain.ingredient;
 import java.util.UUID;
 
-import com.example.demo.dto.CreateIngredientDTO;
-import com.example.demo.dto.IngredientDTO;
+import com.example.demo.dto.ingredientDTO.CreateIngredientDTO;
+import com.example.demo.dto.ingredientDTO.IngredientDTO;
 
 public class IngredientService {
     public static Ingredient create(CreateIngredientDTO dto){

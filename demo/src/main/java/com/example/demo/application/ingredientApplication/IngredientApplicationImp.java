@@ -1,12 +1,12 @@
-package com.example.demo.application;
+package com.example.demo.application.ingredientApplication;
 
 import java.util.UUID;
 
-import com.example.demo.domain.Ingredient;
-import com.example.demo.domain.IngredientRepository;
-import com.example.demo.domain.IngredientService;
-import com.example.demo.dto.CreateIngredientDTO;
-import com.example.demo.dto.IngredientDTO;
+import com.example.demo.domain.ingredient.Ingredient;
+import com.example.demo.domain.ingredient.IngredientRepository;
+import com.example.demo.domain.ingredient.IngredientService;
+import com.example.demo.dto.ingredientDTO.CreateIngredientDTO;
+import com.example.demo.dto.ingredientDTO.IngredientDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

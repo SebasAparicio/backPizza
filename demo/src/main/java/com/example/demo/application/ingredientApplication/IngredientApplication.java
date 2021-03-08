@@ -1,9 +1,9 @@
-package com.example.demo.application;
+package com.example.demo.application.ingredientApplication;
 
 import java.util.UUID;
 
-import com.example.demo.dto.CreateIngredientDTO;
-import com.example.demo.dto.IngredientDTO;
+import com.example.demo.dto.ingredientDTO.CreateIngredientDTO;
+import com.example.demo.dto.ingredientDTO.IngredientDTO;
 
 public interface IngredientApplication {
     public IngredientDTO add(CreateIngredientDTO dto);

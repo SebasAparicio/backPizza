@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.ingredient;
 
 import java.util.UUID;
 
@@ -14,7 +14,7 @@ public class Ingredient {
     @Type (type = "uid-char")
     public UUID id;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     public String name;
     
     @Column

@@ -1,12 +1,10 @@
-package com.example.demo.infraestructure;
+package com.example.demo.infraestructure.ingredientRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
-import com.example.demo.domain.Ingredient;
-import com.example.demo.domain.IngredientRepository;
+import com.example.demo.domain.ingredient.Ingredient;
+import com.example.demo.domain.ingredient.IngredientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
