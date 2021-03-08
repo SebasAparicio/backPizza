@@ -2,8 +2,10 @@ package com.example.demo.domain.pizza;
 
 import java.util.UUID;
 
+import com.example.demo.domain.ingredient.Ingredient;
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
 import com.example.demo.dto.pizzaDTO.PizzaDTO;
+import com.example.demo.dto.pizzaDTO.PizzaIngredientDTO;
 
 public class PizzaService {
     public static Pizza create(CreatePizzaDTO pizzaDTO){
@@ -17,7 +19,12 @@ public class PizzaService {
         pizzaDTO.id = pizza.id;
         pizzaDTO.name = pizza.name;
         pizzaDTO.price = pizza.price;
-        //TODO: convertir el ingrediente del dominio a PizzaIngredienteDTO
+        for (Ingredient ingredient: pizza.getIngredients()){
+            PizzaIngredientDTO pizzaIngredientDTO = new PizzaIngredientDTO();
+            pizzaIngredientDTO.name = ingredient.name;
+            pizzaIngredientDTO.id = ingredient.id;
+            pizzaDTO.ingredients.add(pizzaIngredientDTO);   
+        }
         return pizzaDTO;
     }
 }

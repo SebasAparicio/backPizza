@@ -24,6 +24,18 @@ public class Pizza {
     @Column
     public double price;
     
-    @ManyToMany
+    @ManyToMany 
+    //Si lo pongo private y solo cojo lo de ingredients no podria utilizarlo en service porque seria private
+    //Por eso hacemos los metodos, ya que en el dominio se tiene que poner toda la logica interna de la pizza
     private Set<Ingredient> ingredients;
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
+    public void removeIngredient(Ingredient ingredient){
+        this.ingredients.remove(ingredient);
+    }
 }
