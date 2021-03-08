@@ -24,22 +24,4 @@ public class PizzaRepositoryImp implements PizzaRepository {
         this.pizzaJPARepository.save(pizza);
 
     }
-
-    @Override
-    public void update(Pizza pizza) {
-        this.pizzaJPARepository.save(pizza);
-
-    }
-
-    @Override
-    public void delete(Pizza pizza) {
-        this.pizzaJPARepository.delete(pizza);
-
-    }
-
-    @Override
-    public Optional<Pizza> findById(UUID id) {
-        return this.pizzaJPARepository.findById(id);
-    }
-    
 }
