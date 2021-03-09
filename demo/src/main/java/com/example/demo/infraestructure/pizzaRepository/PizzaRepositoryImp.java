@@ -2,6 +2,9 @@ package com.example.demo.infraestructure.pizzaRepository;
 
 
 
+import java.util.Optional;
+import java.util.UUID;
+
 import com.example.demo.domain.pizza.Pizza;
 import com.example.demo.domain.pizza.PizzaRepository;
 
@@ -22,6 +25,24 @@ public class PizzaRepositoryImp implements PizzaRepository {
     public void add(Pizza pizza) {
         this.pizzaJPARepository.save(pizza);
     }
+    
+    @Override
+    public Optional<Pizza> findById(UUID id) {
+        return this.pizzaJPARepository.findById(id);
+    }
+    
+    @Override
+    public void update(Pizza pizza) {
+        this.pizzaJPARepository.save(pizza);
+        
+    }
+
+    @Override
+    public void delete(Pizza pizza) {
+        this.pizzaJPARepository.delete(pizza);
+        
+    }
+
 
   
 }

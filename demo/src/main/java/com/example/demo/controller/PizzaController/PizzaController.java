@@ -1,5 +1,7 @@
 package com.example.demo.controller.PizzaController;
 
+import java.util.UUID;
+
 import com.example.demo.application.pizzaApplication.PizzaApplication;
 
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
@@ -8,6 +10,9 @@ import com.example.demo.dto.pizzaDTO.PizzaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,4 +33,17 @@ public class PizzaController {
         PizzaDTO pizza = this.pizzaApplication.add(pizzaDTO);
         return ResponseEntity.status(201).body(pizza);
     }
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<?> get(@PathVariable UUID id) {
+        PizzaDTO pizza = this.pizzaApplication.get(id);
+        return ResponseEntity.ok(pizza);
+    }
+    @DeleteMapping(path= "/{id}")
+        void delete(@PathVariable UUID id){
+            this.pizzaApplication.delete(id);
+        }
+    @DeleteMapping(path= "/{pizzaId}/ingredients/{ingredientId}")
+        void deleteIngredient(@PathVariable UUID pizzaId, @PathVariable UUID ingredientId){
+            this.pizzaApplication.deleteIngredient(pizzaId, ingredientId);
+        }
 }

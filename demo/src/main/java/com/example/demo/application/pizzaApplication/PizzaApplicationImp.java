@@ -38,4 +38,36 @@ public class PizzaApplicationImp implements PizzaApplication {
         return PizzaService.createDTO(pizza);
     }
 
+    @Override
+    public PizzaDTO get(UUID id) {
+        Pizza pizza = this.pizzaRepository.findById(id).orElseThrow();
+        return PizzaService.createDTO(pizza);
+    }
+
+    @Override
+    public void update(UUID id, CreatePizzaDTO pizzaDTO) {
+        Pizza pizza = this.pizzaRepository.findById(id).orElseThrow(); //Preguntar como actualizo los ingredientes
+        pizza.name = pizzaDTO.name;
+        this.pizzaRepository.update(pizza);
+
+        
+    }
+
+    @Override
+    public void delete(UUID id) {
+        Pizza pizza = this.pizzaRepository.findById(id).orElseThrow();
+        this.pizzaRepository.delete(pizza);
+        
+    }
+
+    @Override
+    public void deleteIngredient(UUID pizzaId, UUID ingredientId) {
+        //Busco ingrediente si no esta throw, busco pizza sino throw y le quito ingrediente a pizza y guardar pizza
+        Ingredient ingredient = this.ingredientRepository.findById(ingredientId).orElseThrow();
+        Pizza pizza = this.pizzaRepository.findById(pizzaId).orElseThrow();
+        pizza.removeIngredient(ingredient);
+        
+    }
+
+    
 }
