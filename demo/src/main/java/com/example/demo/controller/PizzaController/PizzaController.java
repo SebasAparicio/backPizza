@@ -3,7 +3,8 @@ package com.example.demo.controller.PizzaController;
 import java.util.UUID;
 
 import com.example.demo.application.pizzaApplication.PizzaApplication;
-
+import com.example.demo.dto.CommentDTO.CommentDTO;
+import com.example.demo.dto.CommentDTO.CreateCommentDTO;
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
 import com.example.demo.dto.pizzaDTO.PizzaDTO;
 
@@ -25,25 +26,35 @@ public class PizzaController {
     private final PizzaApplication pizzaApplication;
 
     @Autowired
-    public PizzaController(final PizzaApplication pizzaApplication){
+    public PizzaController(final PizzaApplication pizzaApplication) {
         this.pizzaApplication = pizzaApplication;
     }
+
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> create(@RequestBody final CreatePizzaDTO pizzaDTO){
+    public @ResponseBody ResponseEntity<?> create(@RequestBody final CreatePizzaDTO pizzaDTO) {
         PizzaDTO pizza = this.pizzaApplication.add(pizzaDTO);
         return ResponseEntity.status(201).body(pizza);
     }
+
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable UUID id) {
         PizzaDTO pizza = this.pizzaApplication.get(id);
         return ResponseEntity.ok(pizza);
     }
-    @DeleteMapping(path= "/{id}")
-        void delete(@PathVariable UUID id){
-            this.pizzaApplication.delete(id);
-        }
-    @DeleteMapping(path= "/{pizzaId}/ingredients/{ingredientId}")
-        void deleteIngredient(@PathVariable UUID pizzaId, @PathVariable UUID ingredientId){
-            this.pizzaApplication.deleteIngredient(pizzaId, ingredientId);
-        }
+
+    @DeleteMapping(path = "/{id}")
+    void delete(@PathVariable UUID id) {
+        this.pizzaApplication.delete(id);
+    }
+
+    @DeleteMapping(path = "/{pizzaId}/ingredients/{ingredientId}")
+    void deleteIngredient(@PathVariable UUID pizzaId, @PathVariable UUID ingredientId) {
+        this.pizzaApplication.deleteIngredient(pizzaId, ingredientId);
+    }
+
+    @PostMapping(path = "/{pizzaId}/comment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<?> create(@PathVariable UUID pizzaId, @RequestBody final CreateCommentDTO commentDTO) {
+        CommentDTO comment = this.pizzaApplication.addComment(pizzaId,commentDTO);
+        return ResponseEntity.status(201).body(comment);
+    }
 }
