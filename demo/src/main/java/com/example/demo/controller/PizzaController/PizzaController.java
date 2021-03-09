@@ -52,7 +52,7 @@ public class PizzaController {
         this.pizzaApplication.deleteIngredient(pizzaId, ingredientId);
     }
 
-    @PostMapping(path = "/{pizzaId}/comment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/{pizzaId}/comments", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> create(@PathVariable UUID pizzaId, @RequestBody final CreateCommentDTO commentDTO) {
         CommentDTO comment = this.pizzaApplication.addComment(pizzaId,commentDTO);
         return ResponseEntity.status(201).body(comment);
