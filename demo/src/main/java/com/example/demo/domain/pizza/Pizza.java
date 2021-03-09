@@ -4,11 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+import com.example.demo.domain.Comment.Comment;
 import com.example.demo.domain.ingredient.Ingredient;
 
 import org.hibernate.annotations.Type;
@@ -44,7 +48,7 @@ public class Pizza {
     //Si lo pongo private y solo cojo lo de ingredients no podria utilizarlo en service porque seria private
     //Por eso hacemos los metodos, ya que en el dominio se tiene que poner toda la logica interna de la pizza
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
-
+    
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -54,6 +58,14 @@ public class Pizza {
     public void removeIngredient(Ingredient ingredient){
         this.ingredients.remove(ingredient);
     }
-    
 
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn(name = "pizza_id")
+    Set<Comment> comments = new HashSet<Comment>();
+    
+    
+    public void addComment(Comment comment){
+        this.comments.add(comment);
+    }
+    
 }

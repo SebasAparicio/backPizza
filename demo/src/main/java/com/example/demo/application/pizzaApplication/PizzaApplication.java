@@ -5,6 +5,8 @@ package com.example.demo.application.pizzaApplication;
 
 import java.util.UUID;
 
+import com.example.demo.dto.CommentDTO.CommentDTO;
+import com.example.demo.dto.CommentDTO.CreateCommentDTO;
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
 import com.example.demo.dto.pizzaDTO.PizzaDTO;
 
@@ -18,4 +20,5 @@ public interface PizzaApplication {
     public void update(UUID id, CreatePizzaDTO pizzaDTO);
     public void delete(UUID id);
     public void deleteIngredient(UUID pizzaId, UUID ingredientId);
+    public CommentDTO addComment(UUID pizzaId, CreateCommentDTO commentDTO);
 }

@@ -2,11 +2,15 @@ package com.example.demo.application.pizzaApplication;
 
 import java.util.UUID;
 
+import com.example.demo.domain.Comment.Comment;
+import com.example.demo.domain.Comment.CommentService;
 import com.example.demo.domain.ingredient.Ingredient;
 import com.example.demo.domain.ingredient.IngredientRepository;
 import com.example.demo.domain.pizza.Pizza;
 import com.example.demo.domain.pizza.PizzaRepository;
 import com.example.demo.domain.pizza.PizzaService;
+import com.example.demo.dto.CommentDTO.CommentDTO;
+import com.example.demo.dto.CommentDTO.CreateCommentDTO;
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
 import com.example.demo.dto.pizzaDTO.PizzaDTO;
 
@@ -48,9 +52,11 @@ public class PizzaApplicationImp implements PizzaApplication {
     public void update(UUID id, CreatePizzaDTO pizzaDTO) {
         Pizza pizza = this.pizzaRepository.findById(id).orElseThrow(); //Preguntar como actualizo los ingredientes
         pizza.name = pizzaDTO.name;
+        for(UUID ingredientId: pizzaDTO.ingredients){
+            Ingredient ingredient = this.ingredientRepository.findById(ingredientId).orElseThrow();
+            pizza.addIngredient(ingredient);
+        }
         this.pizzaRepository.update(pizza);
-
-        
     }
 
     @Override
@@ -69,8 +75,18 @@ public class PizzaApplicationImp implements PizzaApplication {
         Double price = pizza.calculatePrice();
         pizza.setPrice(price);
         this.pizzaRepository.add(pizza);
-       //(Esta linea igual sobra probarla con y sin ella) PizzaService.createDTO(pizza);
+       //Esta linea igual sobra probarla con y sin ella
+       //porque no se si aqui en este delte queremos retornar algo o es void PizzaService.createDTO(pizza);
         
+    }
+
+    @Override
+    public CommentDTO addComment(UUID pizzaId, CreateCommentDTO commentDTO) {
+        Pizza pizza = this.pizzaRepository.findById(pizzaId).orElseThrow();
+        Comment comment = CommentService.create(commentDTO);
+        pizza.addComment(comment);
+        this.pizzaRepository.add(pizza);
+        return CommentService.createDTO(comment);
     }
 
     
