@@ -32,6 +32,8 @@ public class PizzaApplicationImp implements PizzaApplication {
             Ingredient ingredient = this.ingredientRepository.findById(ingredientID).orElseThrow();
             pizza.getIngredients().add(ingredient);
         }
+        Double price = pizza.calculatePrice();
+        pizza.setPrice(price);
         this.pizzaRepository.add(pizza);
         return PizzaService.createDTO(pizza);
     }
