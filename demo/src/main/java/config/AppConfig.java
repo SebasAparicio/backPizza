@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
     @Bean
     public DataSource MySqlDataSource(){
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.url("myDbUrl");
         dataSourceBuilder.username("myDbUser");
         dataSourceBuilder.password("myDbPass");

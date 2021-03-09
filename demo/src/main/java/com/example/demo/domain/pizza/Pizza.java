@@ -20,9 +20,24 @@ public class Pizza {
 
     @Column(nullable=false, unique = true)
     public String name;
-    
-    @Column
-    public double price;
+
+    private Double price;
+
+    public void setPrice(Double value) {
+        this.price = value;
+    }
+
+    @Column(nullable=false, name = "price")
+    public Double getPrice(){
+        return  price;
+    }
+    public Double calculatePrice(){
+        Double total = 0.0;
+        for(Ingredient ingredient : this.ingredients){
+            total += ingredient.price; // total = total + ingredient.price
+        }
+        return total = total*1.20;
+    }
     
     @ManyToMany 
     //Si lo pongo private y solo cojo lo de ingredients no podria utilizarlo en service porque seria private
@@ -38,4 +53,6 @@ public class Pizza {
     public void removeIngredient(Ingredient ingredient){
         this.ingredients.remove(ingredient);
     }
+    
+
 }

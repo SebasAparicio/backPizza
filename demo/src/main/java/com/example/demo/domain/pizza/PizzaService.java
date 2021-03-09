@@ -18,7 +18,7 @@ public class PizzaService {
         PizzaDTO pizzaDTO = new PizzaDTO();
         pizzaDTO.id = pizza.id;
         pizzaDTO.name = pizza.name;
-        pizzaDTO.price = pizza.price;
+        pizzaDTO.price = pizza.getPrice();
         for (Ingredient ingredient: pizza.getIngredients()){
             PizzaIngredientDTO pizzaIngredientDTO = new PizzaIngredientDTO();
             pizzaIngredientDTO.name = ingredient.name;

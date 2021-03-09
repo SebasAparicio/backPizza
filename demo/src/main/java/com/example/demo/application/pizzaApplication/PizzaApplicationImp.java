@@ -2,6 +2,7 @@ package com.example.demo.application.pizzaApplication;
 
 import java.util.UUID;
 
+import com.example.demo.domain.ingredient.Ingredient;
 import com.example.demo.domain.ingredient.IngredientRepository;
 import com.example.demo.domain.pizza.Pizza;
 import com.example.demo.domain.pizza.PizzaRepository;
@@ -17,8 +18,9 @@ public class PizzaApplicationImp implements PizzaApplication {
 
     private final PizzaRepository pizzaRepository;
     private final IngredientRepository ingredientRepository;
+
     @Autowired
-    public PizzaApplicationImp (final PizzaRepository pizzaRepository, final IngredientRepository ingredientRepository){
+    public PizzaApplicationImp(final PizzaRepository pizzaRepository, final IngredientRepository ingredientRepository) {
         this.pizzaRepository = pizzaRepository;
         this.ingredientRepository = ingredientRepository;
     }
@@ -26,7 +28,10 @@ public class PizzaApplicationImp implements PizzaApplication {
     @Override
     public PizzaDTO add(CreatePizzaDTO pizzaDTO) {
         Pizza pizza = PizzaService.create(pizzaDTO);
-        //TODO: por cada ingrediente del DTO leer el ingrediente y agregarlo a la pizza
+        for (UUID ingredientID: pizzaDTO.ingredients){
+            Ingredient ingredient = this.ingredientRepository.findById(ingredientID).orElseThrow();
+            pizza.getIngredients().add(ingredient);
+        }
         this.pizzaRepository.add(pizza);
         return PizzaService.createDTO(pizza);
     }

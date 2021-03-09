@@ -8,6 +8,6 @@ import java.util.UUID;
 public class PizzaDTO {
     public UUID id;
     public String name;
-    public double price;
+    public Double price;
     public Set<PizzaIngredientDTO> ingredients = new HashSet<PizzaIngredientDTO>();
 }
