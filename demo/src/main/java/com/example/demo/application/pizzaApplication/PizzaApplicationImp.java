@@ -30,7 +30,7 @@ public class PizzaApplicationImp implements PizzaApplication {
         Pizza pizza = PizzaService.create(pizzaDTO);
         for (UUID ingredientID: pizzaDTO.ingredients){
             Ingredient ingredient = this.ingredientRepository.findById(ingredientID).orElseThrow();
-            pizza.getIngredients().add(ingredient);
+            pizza.addIngredient(ingredient);
         }
         Double price = pizza.calculatePrice();
         pizza.setPrice(price);
