@@ -1,8 +1,10 @@
 package com.example.demo.application.ingredientApplication;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredient.Ingredient;
+import com.example.demo.domain.ingredient.IngredientProjection;
 import com.example.demo.domain.ingredient.IngredientRepository;
 import com.example.demo.domain.ingredient.IngredientService;
 import com.example.demo.dto.ingredientDTO.CreateIngredientDTO;
@@ -48,6 +50,12 @@ public class IngredientApplicationImp implements IngredientApplication {
     public void delete(UUID id) {
         Ingredient ingredient = this.ingredientRepository.findById(id).orElseThrow();
         this.ingredientRepository.delete(ingredient);
+    }
+
+    @Override
+    public List<IngredientProjection> findAll(String name, int page, int size) {
+       
+        return this.ingredientRepository.findAll(name, page, size);
     }
     
 }

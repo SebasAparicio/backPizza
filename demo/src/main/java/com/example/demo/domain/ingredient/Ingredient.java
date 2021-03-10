@@ -22,5 +22,4 @@ public class Ingredient {
     @Column
     public double price;
 
-
 }

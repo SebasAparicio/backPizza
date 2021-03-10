@@ -1,12 +1,16 @@
 package com.example.demo.infraestructure.ingredientRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredient.Ingredient;
+import com.example.demo.domain.ingredient.IngredientProjection;
 import com.example.demo.domain.ingredient.IngredientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -35,6 +39,13 @@ public class IngredientRepositoryImp implements IngredientRepository {
     @Override
     public Optional<Ingredient> findById(UUID id) {
         return this.ingredientJPARepository.findById(id);
+    }
+    @Override
+    public List<IngredientProjection> findAll(String name, int page, int size) {
+        return this.ingredientJPARepository.findByCriteria(
+            name, 
+            PageRequest.of(page, size, Sort.by("name").descending())
+        );
     }
     
 }
