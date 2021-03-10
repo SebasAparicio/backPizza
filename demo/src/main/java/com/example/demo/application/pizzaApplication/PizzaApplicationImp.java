@@ -76,7 +76,18 @@ public class PizzaApplicationImp implements PizzaApplication {
         pizza.setPrice(price);
         this.pizzaRepository.add(pizza);
        //Esta linea igual sobra probarla con y sin ella
-       //porque no se si aqui en este delte queremos retornar algo o es void PizzaService.createDTO(pizza);
+       //porque no se si aqui queremos retornar algo o es void (PizzaService.createDTO(pizza));
+        
+    }
+    
+    @Override
+    public void addIngredient(UUID pizzaId, UUID ingredientId) {
+        Ingredient ingredient = this.ingredientRepository.findById(ingredientId).orElseThrow();
+        Pizza pizza = this.pizzaRepository.findById(pizzaId).orElseThrow();
+        pizza.addIngredient(ingredient);
+        Double price = pizza.calculatePrice();
+        pizza.setPrice(price);
+        this.pizzaRepository.add(pizza);
         
     }
 
@@ -88,6 +99,7 @@ public class PizzaApplicationImp implements PizzaApplication {
         this.pizzaRepository.add(pizza);
         return CommentService.createDTO(comment);
     }
+
 
     
 }

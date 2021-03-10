@@ -20,5 +20,6 @@ public interface PizzaApplication {
     public void update(UUID id, CreatePizzaDTO pizzaDTO);
     public void delete(UUID id);
     public void deleteIngredient(UUID pizzaId, UUID ingredientId);
+    public void addIngredient(UUID pizzaId, UUID ingredientId);
     public CommentDTO addComment(UUID pizzaId, CreateCommentDTO commentDTO);
 }
