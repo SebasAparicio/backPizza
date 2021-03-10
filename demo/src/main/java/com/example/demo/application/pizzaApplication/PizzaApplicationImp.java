@@ -1,5 +1,6 @@
 package com.example.demo.application.pizzaApplication;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.domain.Comment.Comment;
@@ -7,6 +8,7 @@ import com.example.demo.domain.Comment.CommentService;
 import com.example.demo.domain.ingredient.Ingredient;
 import com.example.demo.domain.ingredient.IngredientRepository;
 import com.example.demo.domain.pizza.Pizza;
+import com.example.demo.domain.pizza.PizzaProjection;
 import com.example.demo.domain.pizza.PizzaRepository;
 import com.example.demo.domain.pizza.PizzaService;
 import com.example.demo.dto.CommentDTO.CommentDTO;
@@ -98,6 +100,11 @@ public class PizzaApplicationImp implements PizzaApplication {
         pizza.addComment(comment);
         this.pizzaRepository.add(pizza);
         return CommentService.createDTO(comment);
+    }
+
+    @Override
+    public List<PizzaProjection> findAll(String name, int page, int size) {
+        return this.pizzaRepository.findAll(name, page, size);
     }
 
 

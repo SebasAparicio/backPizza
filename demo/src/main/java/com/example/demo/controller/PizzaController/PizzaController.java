@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,5 +57,12 @@ public class PizzaController {
     public @ResponseBody ResponseEntity<?> create(@PathVariable UUID pizzaId, @RequestBody final CreateCommentDTO commentDTO) {
         CommentDTO comment = this.pizzaApplication.addComment(pizzaId,commentDTO);
         return ResponseEntity.status(201).body(comment);
+    }
+    @GetMapping
+        public ResponseEntity<?> getAll(
+            @RequestParam(required = false) String name,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+            return ResponseEntity.ok(this.pizzaApplication.findAll(name, page, size));
     }
 }

@@ -6,12 +6,14 @@ import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.example.demo.domain.Image;
 import com.example.demo.domain.Comment.Comment;
 import com.example.demo.domain.ingredient.Ingredient;
 
@@ -67,5 +69,7 @@ public class Pizza {
     public void addComment(Comment comment){
         this.comments.add(comment);
     }
-    
+    /*@Embedded
+    public Image image; 
+    */
 }
