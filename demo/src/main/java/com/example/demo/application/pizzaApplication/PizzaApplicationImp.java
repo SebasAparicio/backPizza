@@ -8,6 +8,7 @@ import com.example.demo.domain.Comment.CommentService;
 import com.example.demo.domain.ingredient.Ingredient;
 import com.example.demo.domain.ingredient.IngredientRepository;
 import com.example.demo.domain.pizza.Pizza;
+import com.example.demo.domain.pizza.PizzaDetail;
 import com.example.demo.domain.pizza.PizzaProjection;
 import com.example.demo.domain.pizza.PizzaRepository;
 import com.example.demo.domain.pizza.PizzaService;
@@ -105,6 +106,11 @@ public class PizzaApplicationImp implements PizzaApplication {
     @Override
     public List<PizzaProjection> findAll(String name, int page, int size) {
         return this.pizzaRepository.findAll(name, page, size);
+    }
+
+    @Override
+    public PizzaDetail findDetail(UUID id) {
+        return this.pizzaRepository.findDetail(id);
     }
 
 

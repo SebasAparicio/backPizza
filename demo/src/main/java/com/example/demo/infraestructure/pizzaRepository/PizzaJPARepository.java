@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.domain.pizza.Pizza;
+import com.example.demo.domain.pizza.PizzaDetail;
 import com.example.demo.domain.pizza.PizzaProjection;
 
 import org.springframework.data.domain.Pageable;
@@ -17,4 +18,9 @@ public interface PizzaJPARepository extends JpaRepository<Pizza, UUID> {
         @Param ("name") String name,
         Pageable pageable
      );
+     // Join fetch 
+     @Query ("SELECT p FROM Pizza p JOIN FETCH p.ingredients LEFT JOIN FETCH p.comments WHERE p.id=:id") 
+     PizzaDetail findDetail(
+        @Param ("id") UUID id
+        );
     }

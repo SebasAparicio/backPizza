@@ -3,6 +3,7 @@ package com.example.demo.controller.PizzaController;
 import java.util.UUID;
 
 import com.example.demo.application.pizzaApplication.PizzaApplication;
+import com.example.demo.domain.pizza.PizzaDetail;
 import com.example.demo.dto.CommentDTO.CommentDTO;
 import com.example.demo.dto.CommentDTO.CreateCommentDTO;
 import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
@@ -41,7 +42,7 @@ public class PizzaController {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable UUID id) {
-        PizzaDTO pizza = this.pizzaApplication.get(id);
+        PizzaDetail pizza = this.pizzaApplication.findDetail(id);
         return ResponseEntity.ok(pizza);
     }
 

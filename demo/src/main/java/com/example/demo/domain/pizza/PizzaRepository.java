@@ -12,6 +12,7 @@ public interface PizzaRepository {
     public void update(Pizza pizza);
     public void delete(Pizza pizza);
     public List<PizzaProjection> findAll(String name, int page, int size);
+    public PizzaDetail findDetail(UUID id);
     
 }
 

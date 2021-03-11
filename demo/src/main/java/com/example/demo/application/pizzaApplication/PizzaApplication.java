@@ -6,6 +6,7 @@ package com.example.demo.application.pizzaApplication;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.demo.domain.pizza.PizzaDetail;
 import com.example.demo.domain.pizza.PizzaProjection;
 import com.example.demo.dto.CommentDTO.CommentDTO;
 import com.example.demo.dto.CommentDTO.CreateCommentDTO;
@@ -25,4 +26,5 @@ public interface PizzaApplication {
     public void addIngredient(UUID pizzaId, UUID ingredientId);
     public CommentDTO addComment(UUID pizzaId, CreateCommentDTO commentDTO);
     public List<PizzaProjection> findAll(String name, int page, int size);
+    public PizzaDetail findDetail(UUID id);
 }

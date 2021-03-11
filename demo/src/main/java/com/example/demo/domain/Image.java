@@ -7,4 +7,5 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Image {
     public UUID id;
+    
 }
