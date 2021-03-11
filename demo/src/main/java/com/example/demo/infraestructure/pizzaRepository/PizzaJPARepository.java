@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface PizzaJPARepository extends JpaRepository<Pizza, UUID> {
-    @Query("SELECT p.id as id, p.name as name FROM Pizza p WHERE :name IS NULL OR p.name LIKE %:name%")
+    @Query("SELECT p.id as id, p.name as name, p.price as price FROM Pizza p WHERE :name IS NULL OR p.name LIKE %:name%")
     List<PizzaProjection> findByCriteria(
         @Param ("name") String name,
         Pageable pageable

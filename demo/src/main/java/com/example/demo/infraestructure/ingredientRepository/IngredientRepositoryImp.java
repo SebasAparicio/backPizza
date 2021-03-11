@@ -40,6 +40,7 @@ public class IngredientRepositoryImp implements IngredientRepository {
     public Optional<Ingredient> findById(UUID id) {
         return this.ingredientJPARepository.findById(id);
     }
+    
     @Override
     public List<IngredientProjection> findAll(String name, int page, int size) {
         return this.ingredientJPARepository.findByCriteria(

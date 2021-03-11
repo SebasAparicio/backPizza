@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@CrossOrigin si queremos sacar datos de CORS tenemos que ponerlo porque sino no nos deja por la politica CORS
+//@CrossOrigin si queremos sacar datos de CORS tenemos que ponerlo
 @CrossOrigin(origins = "*", maxAge = 3600) 
 @RequestMapping("api/v1/ingredients")
 public class IngredientController {

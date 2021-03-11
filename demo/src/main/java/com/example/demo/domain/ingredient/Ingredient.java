@@ -20,6 +20,8 @@ public class Ingredient {
     public String name;
     
     @Column
-    public double price;
+    public Double price;
+
+    
 
 }
