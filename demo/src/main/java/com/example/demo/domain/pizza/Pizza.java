@@ -69,7 +69,8 @@ public class Pizza {
     public void addComment(Comment comment){
         this.comments.add(comment);
     }
-    /*@Embedded
+
+    @Embedded
     public Image image; 
-    */
+    
 }
