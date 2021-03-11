@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.Image;
 
 import java.util.UUID;
 

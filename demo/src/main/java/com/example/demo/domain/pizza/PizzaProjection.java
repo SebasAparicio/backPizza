@@ -6,5 +6,8 @@ public interface PizzaProjection {
     public UUID getId();
     public String getName();
     public Double getPrice();
-    //TODO imagen
+    
+    public interface Image{
+        public String getUrl();
+    }
 }

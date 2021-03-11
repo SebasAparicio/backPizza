@@ -13,8 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.example.demo.domain.Image;
+
 import com.example.demo.domain.Comment.Comment;
+import com.example.demo.domain.Image.Image;
 import com.example.demo.domain.ingredient.Ingredient;
 
 import org.hibernate.annotations.Type;
