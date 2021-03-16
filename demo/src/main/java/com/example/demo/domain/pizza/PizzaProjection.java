@@ -9,6 +9,6 @@ public interface PizzaProjection {
     public Image getImage();
     
     public interface Image{
-        public String getUrl();
+        public String getPublic_id();
     }
 }

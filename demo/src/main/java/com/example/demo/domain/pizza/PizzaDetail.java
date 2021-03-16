@@ -14,7 +14,7 @@ public interface PizzaDetail {
     public Image getImage();
     
     public interface Image{
-        public String getUrl();
+        public String getPublic_id();
     }
 
     public List<PizzaDetailIngredients> getIngredients();
