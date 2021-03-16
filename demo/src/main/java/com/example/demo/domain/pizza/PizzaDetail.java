@@ -11,6 +11,12 @@ public interface PizzaDetail {
 
     public Double getPrice();
 
+    public Image getImage();
+    
+    public interface Image{
+        public String getUrl();
+    }
+
     public List<PizzaDetailIngredients> getIngredients();
 
     public List<PizzaDetailComments> getComments();
