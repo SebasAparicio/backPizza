@@ -1,6 +1,6 @@
 package com.example.demo.domain.Image;
 
-import java.util.UUID;
+
 
 import javax.persistence.Embeddable;
 
