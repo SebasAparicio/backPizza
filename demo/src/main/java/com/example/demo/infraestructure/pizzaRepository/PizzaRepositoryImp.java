@@ -50,6 +50,7 @@ public class PizzaRepositoryImp implements PizzaRepository {
 
     @Override
     public List<PizzaProjection> findAll(String name, int page, int size) {
+        //TODO hacer if para ascendente para descendete
         return this.pizzaJPARepository.findByCriteria(
             name, 
             PageRequest.of(page, size, Sort.by("name").descending())

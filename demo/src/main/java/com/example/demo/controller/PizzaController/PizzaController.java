@@ -2,6 +2,8 @@ package com.example.demo.controller.PizzaController;
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import com.example.demo.application.pizzaApplication.PizzaApplication;
 import com.example.demo.domain.pizza.PizzaDetail;
 import com.example.demo.dto.CommentDTO.CommentDTO;
@@ -10,8 +12,10 @@ import com.example.demo.dto.pizzaDTO.CreatePizzaDTO;
 import com.example.demo.dto.pizzaDTO.PizzaDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600) 
@@ -57,7 +63,10 @@ public class PizzaController {
     }
 
     @PostMapping(path = "/{pizzaId}/comments", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> create(@PathVariable UUID pizzaId, @RequestBody final CreateCommentDTO commentDTO) {
+    public @ResponseBody ResponseEntity<?> create(@PathVariable UUID pizzaId, @Valid @RequestBody final CreateCommentDTO commentDTO, Errors errors) throws NotFoundException {
+        if (errors.hasErrors()){
+            return ResponseEntity.badRequest().body(errors.getFieldErrors());
+        }
         CommentDTO comment = this.pizzaApplication.addComment(pizzaId,commentDTO);
         return ResponseEntity.status(201).body(comment);
     }
@@ -65,7 +74,9 @@ public class PizzaController {
         public ResponseEntity<?> getAll(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size)
+            //TODO hacer parametro para lo de ascendete y descendente y poner un defaultValue=algo
+             {
             return ResponseEntity.ok(this.pizzaApplication.findAll(name, page, size));
     }
 }
